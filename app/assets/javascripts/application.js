@@ -40,7 +40,7 @@ $(function(){
 					$('#problems').append($('<h5>').text(decisionTitle));
 					$('#problems').append($('<h5>').text(decisionDescription));
 					$('#problems').append($('<a class="btn btn-primary btn-xs" href="/users/'+decision.user_id+'/problems/'+decision.id+'/form_decision">Analyze</a>'));
-					$('#problems').append($('<input type="button" class="btn btn-primary btn-xs" value="Delete" action="" method="DELETE">'));
+					$('#problems').append($('<a class="btn btn-primary btn-xs" data-confirm="Are you sure?" data-method="delete" href="/users/'+decision.user_id+'/problems/'+decision.id+'">Delete</a>'));
 				})
 			},
 			error: function(error){
@@ -65,7 +65,7 @@ $(function(){
 					$('#problems').append($('<h5>').text(breakEvenTitle));
 					$('#problems').append($('<h5>').text(breakEvenDescription));
 					$('#problems').append($('<a class="btn btn-primary btn-xs" href="/users/' + break_even.user_id + '/problems/' + break_even.id + '/break_evens/new">Analyze</a>'));
-					$('#problems').append($('<input type="button" class="btn btn-primary btn-xs" value="Delete" action="" method="DELETE">'));
+					$('#problems').append($('<a class="btn btn-primary btn-xs" data-confirm="Are you sure?" data-method="delete" href="/users/' + break_even.user_id + '/problems/' + break_even.id + '">Delete</a>'));
 				})
 
 			},
@@ -91,7 +91,7 @@ $(function(){
 					$('#problems').append($('<h5>').text(crossoverTitle));
 					$('#problems').append($('<h5>').text(crossoverDescription));
 					$('#problems').append($('<a class="btn btn-primary btn-xs" href="/users/'+crossover.user_id+'/problems/'+crossover.id+'/form_crossover">Analyze</a>'));
-					$('#problems').append($('<a class="btn btn-primary btn-xs" href="/users/' + crossover.user_id + '/problems/' + crossover.id +'">Delete</a>'));					
+					$('#problems').append($('<a class="btn btn-primary btn-xs" data-confirm="Are you sure?" data-method="delete" href="/users/' + crossover.user_id + '/problems/' + crossover.id + '">Delete</a>'));					
 				})
 			},
 			error: function(error){
@@ -100,16 +100,3 @@ $(function(){
 		})
 	});
 })
-
-// ($('<input type="button" id="analyze-btn" class="btn btn-primary btn-xs" value="Analyze" method="GET">')).attr('action', 'www.google.com');
-// <% @problems.each do |problem|%>
-// 	<div class="problems" style='border-radius: 25px; border:2px #5bdb99 solid; background-color: #5bdb99; margin:10px; width:fit-content; width:-webkit-fit-content; width:-moz-fit-content; padding: 10px; display:inline-block;'>
-// 	<%=	problem.title %> 
-// 		<%= problem.description %>
-// 		<%= button_to "Let's decide", form_user_problem_path(@user, problem), :method => "get" %>
-// 		<%= button_to 'Delete', "/problems/#{problem.id}",
-//              method: :delete,
-//              data: { confirm: 'Are you sure?' } %> 
-//    	</div>
-// <%end%>
-// <br>
