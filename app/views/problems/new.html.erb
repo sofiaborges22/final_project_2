@@ -1,0 +1,18 @@
+<div class="container">
+	<div class="row new-problem">
+		<div class="col-sm-12">
+			<%= form_for @new_problem, url: user_problems_path(@user, @new_problem), html: { method: :post } do |f| %>
+				  <%= f.label(:title, "Title:") %>
+				  <%= f.text_field(:title) %><br>
+				  <%= f.label(:description, "Description:") %>
+				  <%= f.text_field(:description)%><br>
+				  <%= f.select(:category, ['Decision Tree Tool','Break Even Analysis','Crossover Analysis'])%><br> 
+
+				   
+				  <%= f.submit("Add Problem") %>
+
+			<% end %>
+		</div>
+	</div>
+</div>
+

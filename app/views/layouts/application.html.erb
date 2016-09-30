@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FinalProject</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  </head>
+
+  <body>
+
+    <div class="modal fade" id="logInModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel" style="text-align:center">Welcome back!</h4>
+          </div>
+          <div class="modal-body" style="text-align:center">
+            <%= form_tag '/login' do %>
+                Username: <%= text_field_tag :username %>
+                Password: <%= password_field_tag :password %>
+                <%= submit_tag "Log In" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="signUpModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel" style="text-align:center">Register</h4>
+          </div>
+          <div class="modal-body" style="text-align:center">
+            <%= form_for :user, url: '/users' do |f| %>
+              <p>Business Name: <%=f.text_field :name %><p>
+              <p>Username: <%=f.text_field :username %></p>
+              <p>Email: <%=f.text_field :email%></p>
+              <p>Password: <%=f.password_field :password %></p>
+              <p>Password Confirmation: <%=f.password_field :password_confirmation %></p> 
+              <%= f.submit "Sign Up" %>
+            <%end%>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid">
+      <div class="row header">
+        <div class="col-sm-8">
+          <h1 class="site-title">PROJECT</h1>
+        </div>
+        <div class="col-sm-3">
+          <br>
+          <nav>
+            <ul class="menu">
+              <li role="presentation" class="active menu-item"><a href="/">Home</a></li>
+              <li role="presentation" class="menu-item"><a href="http://demo.fabthemes.com/revera/about">About</a></li>
+              <li role="presentation" class="menu-item"><a href="http://demo.fabthemes.com/revera/sample-page-2">Contact</a></li>
+
+              <% if @user.present? %>
+                <li role="presentation" class="menu-item">
+                  <%= button_to "Profile", "/users/#{@user.id}", :method => "get", :class => "btn btn-primary btn-xs" %>
+                </li>
+              <% else %>
+                <li role="presentation" class="menu-item">
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#signUpModal">
+                    Sign Up
+                  </button>
+                </li>
+              <% end %>
+
+              <% if @user.present? %>
+                <li role="presentation" class="menu-item">
+                  <%= button_to "Log out", "/logout", :method => :delete, :class => "btn btn-primary btn-xs" %>
+                </li>
+              <% else %>
+                <li role="presentation" class="menu-item">
+                  <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#logInModal">
+                    Log In
+                  </button>
+                </li>
+              <% end %>                
+            </ul>
+          </nav>
+        </div>
+      </div>  
+    </div>  
+
+    <%= yield %>
+    <%= render 'layouts/footer' %> 
+    
+  </body>
+</html>
