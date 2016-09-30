@@ -19,12 +19,29 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel" style="text-align:center">Welcome back!</h4>
           </div>
-          <div class="modal-body" style="text-align:center">
+          <div class="modal-body" style="text-align:center; margin:10px;">
+
             <%= form_tag '/login' do %>
-                Username: <%= text_field_tag :username %>
-                Password: <%= password_field_tag :password %>
-                <%= submit_tag "Log In" %>
+              
+              <div class="form-group">
+                <div class="col-sm-12" style="text-align:center">
+                  Username * <%= text_field_tag :username %>
+                </div>
+              </div><br>
+
+              <div class="form-group">
+                <div class="col-sm-12" style="text-align:center">
+                  Password * <%= password_field_tag :password %>
+                </div>
+              </div><br>
+
+              <div class="form-group">
+                <div class="col-sm-12" style="text-align:center">
+                  <%= submit_tag "Log In" %>
+                </div>
+              </div>
             <% end %>
+           
           </div>
         </div>
       </div>
@@ -37,15 +54,43 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
             <h4 class="modal-title" id="myModalLabel" style="text-align:center">Register</h4>
           </div>
-          <div class="modal-body" style="text-align:center">
-            <%= form_for :user, url: '/users' do |f| %>
-              <p>Business Name: <%=f.text_field :name %><p>
-              <p>Username: <%=f.text_field :username %></p>
-              <p>Email: <%=f.text_field :email%></p>
-              <p>Password: <%=f.password_field :password %></p>
-              <p>Password Confirmation: <%=f.password_field :password_confirmation %></p> 
-              <%= f.submit "Sign Up" %>
-            <%end%>
+          <div class="modal-body" style="text-align:center; width:200px; height:500px;">
+
+              <%= form_for :user, url: '/users' do |f|%>
+                
+                <div class="form-group" style="width:200%">
+                  <%= f.label(:name, "Business Name *", class: "col-sm-4 control-label") %>
+                  <%= f.text_field :name, class: "col-sm-6 form-control" %>
+                </div>
+
+                <div class="form-group" style="width:200%">
+                  <%= f.label(:username, "Username *", class: "col-sm-6 control-label") %>
+                  <%= f.text_field :username, class: "col-sm-6 form-control"  %>
+
+                </div>
+
+                <div class="form-group style="width:200%"">
+                  <%= f.label(:email, "Email *", class: "col-sm-4 control-label") %>
+                  <%= f.text_field :email, class: "col-sm-6 form-control"  %>
+                </div>
+
+                <div class="form-group style="width:200%"">
+                  <%= f.label(:password, "Password *", class: "col-sm-4 control-label") %>
+                  <%= f.text_field :password, class: "col-sm-6 form-control"  %>
+                </div>
+
+                <div class="form-group style="width:200%"">
+                  <%= f.label(:password_confirmation, "Confirm Password *", class: "col-sm-4 control-label") %>
+                  <%= f.text_field :password_confirmation, class: "col-sm-6 form-control"  %>
+                </div>
+
+                <div class="form-group style="width:200%"">
+                  <div class="col-sm-12" style="margin:2px;">
+                    <%= f.submit "Register", class: "btn btn-primary col-sm-12"%>
+                  </div>
+                </div>
+              <% end %>
+
           </div>
         </div>
       </div>
